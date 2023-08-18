@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
   bash \
   wget \
   unzip \
+  sed \
   net-tools \
   sendmail \
   lsb-release \
@@ -33,6 +34,7 @@ RUN mkdir -p ${WP_PATH} && chown -R www-data:www-data ${WP_PATH}
 RUN touch /var/log/php8.2-fpm.log && \
     chown www-data:www-data /var/log/php8.2-fpm.log && \
     chmod 755 /var/log/php8.2-fpm.log
+RUN sed -i s/\\/run\\/php\\/php8.2-fpm.sock/9000/ /etc/php/8.2/fpm/pool.d/www.conf
 COPY --chown=www-data:www-data ./docker-entrypoint.sh /
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 

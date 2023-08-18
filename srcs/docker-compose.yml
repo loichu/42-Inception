@@ -1,21 +1,21 @@
 version: '3.3'
 
 services:
-  # nginx:
-  #   build: ./nginx
-  #   image: inception/nginx:42
-  #   container_name: nginx
-  #   depends_on:
-  #     - wordpress
-  #   volumes:
-  #     - wordpress_data:/var/www/html/wordpress
-  #   ports:
-  #     - 443:443
-  #   networks:
-  #     - inception
-  #   env_file:
-  #     - .env
-  #   restart: on-failure
+  nginx:
+    build: ./nginx
+    image: inception/nginx:42
+    container_name: nginx
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
+    ports:
+      - 443:443
+    networks:
+      - inception
+    env_file:
+      - .env
+    restart: on-failure
 
   wordpress:
     build: ./wordpress
