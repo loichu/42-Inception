@@ -6,6 +6,10 @@ ENV DB_NAME=wordpress
 ENV DB_USER=dbuser
 ENV DB_PASS=password
 ENV DB_HOST=mariadb
+ENV WP_TITLE=Inception
+ENV WP_ADMIN_USER=master
+ENV WP_ADMIN_PASSWORD=password
+ENV WP_ADMIN_EMAIL=master@domain.com
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -14,6 +18,7 @@ RUN apt-get update && apt-get install -y \
   wget \
   unzip \
   net-tools \
+  sendmail \
   lsb-release \
   gnupg gnupg2 \
   php-fpm php-cli php-mysql php-xdebug php-curl \

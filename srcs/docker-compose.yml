@@ -1,0 +1,72 @@
+version: '3.3'
+
+services:
+  # nginx:
+  #   build: ./nginx
+  #   image: inception/nginx:42
+  #   container_name: nginx
+  #   depends_on:
+  #     - wordpress
+  #   volumes:
+  #     - wordpress_data:/var/www/html/wordpress
+  #   ports:
+  #     - 443:443
+  #   networks:
+  #     - inception
+  #   env_file:
+  #     - .env
+  #   restart: on-failure
+
+  wordpress:
+    build: ./wordpress
+    image: inception/wordpress:42
+    container_name: wordpress
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
+    ports:
+      - 9000
+    networks:
+      - inception
+    restart: on-failure
+
+  mariadb:
+    build: ./mariadb
+    image: inception/mariadb:42
+    container_name: mariadb
+    env_file:
+      - .env
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - inception
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+networks:
+  inception:
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      device: ${HOST_VOLUME_ROOT}/mariadb
+      type: volume
+      o: bind
+  wordpress_data:
+    driver: local
+    driver_opts:
+      device: ${HOST_VOLUME_ROOT}/wordpress
+      type: volume
+      o: bind
