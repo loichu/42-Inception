@@ -10,6 +10,9 @@ ENV WP_TITLE=Inception
 ENV WP_ADMIN_USER=master
 ENV WP_ADMIN_PASSWORD=password
 ENV WP_ADMIN_EMAIL=master@domain.com
+ENV WP_USER=user
+ENV WP_PASSWORD=password
+ENV WP_EMAIL=user@domain.com
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
