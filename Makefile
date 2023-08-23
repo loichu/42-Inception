@@ -21,7 +21,11 @@ IMAGES = $(shell $(DKC_CONFIG) --images)
 
 all: install
 
-up:
+$(COMPOSE_DIR)/.env:
+	@echo Please create .env file by copying and modifying $(COMPOSE_DIR)/.sample.env
+	exit 1
+
+up: $(COMPOSE_DIR)/.env
 	$(DKC) up -d
 
 down:
@@ -41,10 +45,10 @@ info:
 	@echo -e "\nCONTAINERS:"
 	@$(DKC) ps -a
 
-build:
+build: $(COMPOSE_DIR)/.env
 	$(DKC) build --no-cache
 
-install: volumes build
+install: $(COMPOSE_DIR)/.env volumes build
 	$(DKC) create
 	@$(MAKE) -s info
 	@$(MAKE) -s up
