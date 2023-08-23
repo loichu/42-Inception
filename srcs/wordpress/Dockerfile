@@ -13,6 +13,7 @@ ENV WP_ADMIN_EMAIL=master@domain.com
 ENV WP_USER=user
 ENV WP_PASSWORD=password
 ENV WP_EMAIL=user@domain.com
+ENV WP_REDIS_HOST=redis
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -21,11 +22,12 @@ RUN apt-get update && apt-get install -y \
   wget \
   unzip \
   sed \
+  less \
   net-tools \
   sendmail \
   lsb-release \
   gnupg gnupg2 \
-  php-fpm php-cli php-mysql php-xdebug php-curl \
+  php-fpm php-cli php-mysql php-xdebug php-curl php-redis \
   mariadb-client \
   && rm -rf /var/lib/apt/lists/*
 

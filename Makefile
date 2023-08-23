@@ -48,6 +48,9 @@ info:
 build: $(COMPOSE_DIR)/.env
 	$(DKC) build --no-cache
 
+build-quick: $(COMPOSE_DIR)/.env
+	$(DKC) build
+
 install: $(COMPOSE_DIR)/.env volumes build
 	$(DKC) create
 	@$(MAKE) -s info
@@ -72,4 +75,5 @@ clean-containers:
 clean: down clean-containers clean-volumes clean-images info
 fclean: down clean-containers fclean-volumes fclean-images info
 re: down clean all
-reset-all: fclean install all logs
+reset-all: fclean all
+re-quick: down build-quick up

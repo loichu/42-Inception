@@ -53,6 +53,18 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    build: ./redis
+    container_name: redis
+    image: inception/redis:42
+    ports:
+      - "6379"
+    networks:
+      - inception
+    env_file:
+      - .env
+    restart: on-failure
+
 
 networks:
   inception:
