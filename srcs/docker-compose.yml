@@ -65,6 +65,20 @@ services:
       - .env
     restart: on-failure
 
+  ftp:
+    build: ./ftp
+    container_name: ftp
+    image: inception/ftp:42
+    ports:
+      - 21:21
+    networks:
+      - inception
+    env_file:
+      - .env
+    volumes:
+      - wordpress_data:/home/${FTP_USER}
+    restart: on-failure
+
 
 networks:
   inception:

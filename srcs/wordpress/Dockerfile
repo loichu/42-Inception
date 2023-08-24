@@ -1,19 +1,6 @@
 FROM debian:12
 
-# Default config values
 ENV WP_PATH=/var/www/html/wordpress
-ENV DB_NAME=wordpress
-ENV DB_USER=dbuser
-ENV DB_PASS=password
-ENV DB_HOST=mariadb
-ENV WP_TITLE=Inception
-ENV WP_ADMIN_USER=master
-ENV WP_ADMIN_PASSWORD=password
-ENV WP_ADMIN_EMAIL=master@domain.com
-ENV WP_USER=user
-ENV WP_PASSWORD=password
-ENV WP_EMAIL=user@domain.com
-ENV WP_REDIS_HOST=redis
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
