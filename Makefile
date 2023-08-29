@@ -72,6 +72,14 @@ clean-containers:
 	$(DKC) kill --remove-orphans
 	$(DKC) rm -f
 
+reload-nginx:
+	$(DKC) build nginx
+	$(DKC) create nginx
+	$(DKC) start nginx
+
+nginx-logs:
+	$(DKC) exec nginx tail -f /var/log/nginx/access.log /var/log/nginx/error.log
+
 clean: down clean-containers clean-volumes clean-images info
 fclean: down clean-containers fclean-volumes fclean-images info
 re: down clean all

@@ -9,6 +9,7 @@ services:
       - wordpress
     volumes:
       - wordpress_data:/var/www/html/wordpress
+      - adminer_data:/var/www/html/adminer
     ports:
       - 443:443
     networks:
@@ -79,6 +80,20 @@ services:
       - wordpress_data:/home/${FTP_USER}
     restart: on-failure
 
+  adminer:
+    build: ./adminer
+    image: inception/adminer:42
+    container_name: adminer
+    env_file:
+      - .env
+    volumes:
+      - adminer_data:/var/www/html/adminer
+    ports:
+      - 9000
+    networks:
+      - inception
+    restart: on-failure
+
 
 networks:
   inception:
@@ -96,3 +111,4 @@ volumes:
       device: ${HOST_VOLUME_ROOT}/wordpress
       type: volume
       o: bind
+  adminer_data:
