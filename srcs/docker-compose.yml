@@ -94,6 +94,20 @@ services:
       - inception
     restart: on-failure
 
+  mailslurper:
+    build: ./mailslurper
+    image: inception/mailslurper:42
+    container_name: mailslurper
+    env_file:
+      - .env
+    ports:
+      - 2500
+      - 8085
+      - 8080
+    networks:
+      - inception
+    restart: on-failure
+
 
 networks:
   inception:
