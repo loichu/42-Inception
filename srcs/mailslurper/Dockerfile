@@ -14,7 +14,7 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 1777 "$GOPATH"
 WORKDIR $GOPATH
 
 RUN mkdir -p /go/src/github.com \
-    && git clone https://github.com/mailslurper/mailslurper.git \
+    && git clone --branch release-1.15.0 https://github.com/mailslurper/mailslurper.git \
         /go/src/github.com/mailslurper
 
 RUN go install github.com/mjibson/esc@latest
@@ -28,12 +28,12 @@ RUN go build
 WORKDIR /go/src/github.com/mailslurper/cmd/mailslurper
 
 RUN echo '{\n\
-  "wwwAddress": "mail.42.fr",\n\
+  "wwwAddress": "mailslurper",\n\
   "wwwPort": 8080,\n\
-  "wwwPublicURL": "",\n\
+  "wwwPublicURL": "https://mail.42.fr",\n\
   "serviceAddress": "mailslurper",\n\
   "servicePort": 8085,\n\
-  "servicePublicURL": "",\n\
+  "servicePublicURL": "https://mail.42.fr/api",\n\
   "smtpAddress": "mailslurper",\n\
   "smtpPort": 2500,\n\
   "dbEngine": "SQLite",\n\
