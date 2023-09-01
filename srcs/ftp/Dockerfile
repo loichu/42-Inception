@@ -1,4 +1,4 @@
-FROM debian:12
+FROM debian:buster
 
 RUN apt update && apt install -y \
 	lsb-release curl gpg bash vsftpd man
