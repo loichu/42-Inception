@@ -108,6 +108,18 @@ services:
       - inception
     restart: on-failure
 
+  mkdocs:
+    build: ./mkdocs
+    image: inception/mkdocs:42
+    container_name: mkdocs
+    volumes:
+      - ..:/root/mkdocs
+    ports:
+      - 8000
+    networks:
+      - inception
+    restart: on-failure
+
 
 networks:
   inception:
