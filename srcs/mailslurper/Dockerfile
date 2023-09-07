@@ -1,12 +1,12 @@
 FROM debian:buster
 
 RUN apt update && apt install -y \
-	lsb-release curl gpg bash tar \
+    lsb-release curl gpg bash tar \
     git libc-dev gcc \
-    ca-certificates 
+    ca-certificates
 
-COPY go1.21.0.linux-amd64.tar.gz .
-RUN tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
+RUN curl -fsSL https://go.dev/dl/go1.21.1.linux-amd64.tar.gz -o go1.21.1.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.21.1.linux-amd64.tar.gz
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:$PATH:/usr/local/go/bin
