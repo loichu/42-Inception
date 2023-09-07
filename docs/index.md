@@ -1,17 +1,5 @@
-# Welcome to MkDocs
+# Welcome Inception Documentation
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+This project is a docker compose stack for Inception at 42.
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+This is not meant to be a good dev or prod environment, it is just a demo project and the goal is to satisfy 42's requirements.

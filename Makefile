@@ -51,7 +51,7 @@ build: $(COMPOSE_DIR)/.env
 build-quick: $(COMPOSE_DIR)/.env
 	$(DKC) build
 
-install: $(COMPOSE_DIR)/.env volumes build
+install: $(COMPOSE_DIR)/.env volumes build-quick
 	$(DKC) create
 	@$(MAKE) -s info
 	@$(MAKE) -s up
